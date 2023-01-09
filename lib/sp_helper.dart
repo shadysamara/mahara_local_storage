@@ -18,7 +18,13 @@ class SpHelper {
   }
 
   bool checkIfFirstTime() {
-    return sharedPreferences.getBool('isFirstTime') ?? true;
+    bool? isFirstTime = sharedPreferences.getBool('isFirstTime');
+    // return isFirstTime ?? true;
+    if (isFirstTime == null) {
+      return true;
+    } else {
+      return isFirstTime;
+    }
   }
 
   writeFirstTime() {

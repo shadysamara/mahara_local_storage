@@ -30,21 +30,9 @@ class MySpScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Consumer<AppProvider>(builder: (context, provider, x) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(provider.name ?? 'not defined'),
-            SizedBox(height: 20,),
-            TextField(
-              controller: provider.editingController,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  provider.saveUser();
-                },
-                child: Text('Enter Name in Sp'))
-          ],
-        );
+        return Center(child: Text(provider.content,style: TextStyle(
+          fontFamily: 'sofia',
+          fontSize: 30),));
       }),
     );
   }

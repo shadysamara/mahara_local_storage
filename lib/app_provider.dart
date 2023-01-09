@@ -5,10 +5,13 @@ class AppProvider extends ChangeNotifier {
   AppProvider() {
     SpHelper.spHelper.initSp().then((value) {
       getUser();
+      getFirstTime();
     });
   }
 
   TextEditingController editingController = TextEditingController();
+  String content = '';
+
   String? name;
   saveUser() async {
     await SpHelper.spHelper.saveMyName(editingController.text);
@@ -20,5 +23,14 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  getFirstTime(){}
+  getFirstTime() {
+    bool isFirstTime = SpHelper.spHelper.checkIfFirstTime();
+    if (isFirstTime) {
+      content = "this is the first time in the app";
+       SpHelper.spHelper.writeFirstTime();
+    } else {
+      content = "you are an old user, hello my friend";
+    }
+    notifyListeners();
+  }
 }
