@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mahara_db/app_provider.dart';
+import 'package:mahara_db/db_helper.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -29,11 +30,11 @@ class MySpScreen extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(),
-      body: Consumer<AppProvider>(builder: (context, provider, x) {
-        return Center(child: Text(provider.content,style: TextStyle(
-          fontFamily: 'sofia',
-          fontSize: 30),));
-      }),
+      body: Center(
+        child: RaisedButton(onPressed: () {
+          DbHelper.dbHelper.getAllTables();
+        }),
+      ),
     );
   }
 }
